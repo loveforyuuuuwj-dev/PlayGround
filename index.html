@@ -19,12 +19,13 @@
       <header class="topbar">
         <a class="brand" href="#" aria-label="Little Isle home"><span class="brand-mark">✳</span><span>little isle<span class="brand-sub">a quiet fishing game</span></span></a>
         <div class="top-actions">
-          <div class="weather"><span class="weather-icon">☀</span><span>24°<small> · gentle breeze</small></span></div>
+          <div class="weather" id="time-toggle" role="button" tabindex="0" title="Switch time of day (Morning / Golden Hour / Starry Dusk)"><span class="weather-icon" id="weather-icon">☀</span><span id="weather-text">24°<small> · gentle breeze</small></span></div>
+          <button class="icon-button" id="journal-button" type="button" aria-label="Open Field Journal" title="Field Journal">📖</button>
           <button class="icon-button" id="sound-toggle" type="button" aria-label="Turn ambient sounds on" title="Ambient sounds"><span id="sound-icon">♪</span></button>
           <button class="icon-button" id="help-button" type="button" aria-label="How to play" title="How to play">?</button>
         </div>
       </header>
-      <div class="scene-caption"><span class="caption-dot"></span> PEBBLE COVE <span class="caption-line"></span> DAY 01</div>
+      <div class="scene-caption"><span class="caption-dot"></span> PEBBLE COVE <span class="caption-line"></span> <span id="time-badge">MORNING TIDE</span></div>
       <div class="scene-note" id="scene-note" aria-live="polite">The tide is in no hurry. Neither are you.</div>
       <div class="sun-glow" aria-hidden="true"></div>
     </section>
@@ -60,12 +61,32 @@
     </section>
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <dialog id="journal-dialog" class="help-dialog journal-dialog">
+      <button class="dialog-close" id="close-journal" aria-label="Close">×</button>
+      <div class="dialog-flower">📖</div><div class="eyebrow">Island Field Guide</div>
+      <h2>Creatures of Pebble Cove</h2>
+      <p class="journal-sub">Six little friends make their home around the dock and sandbar. Meet them all at your own pace.</p>
+      <div class="journal-grid" id="journal-grid"></div>
+      <button class="dialog-done" id="journal-done">Close Journal</button>
+    </dialog>
+
+    <dialog id="catch-dialog" class="help-dialog catch-dialog">
+      <div class="catch-confetti" id="catch-confetti"></div>
+      <div class="catch-avatar" id="catch-avatar">🐠</div>
+      <div class="eyebrow" id="catch-eyebrow">A new discovery!</div>
+      <h2 id="catch-name">Sunfin</h2>
+      <div class="catch-meta" id="catch-meta"><span>Length: <b>14.2 cm</b></span><span>Rarity: <b>Gentle</b></span></div>
+      <p id="catch-desc">A little sunfin! It practically glows in the morning tide.</p>
+      <button class="dialog-done" id="catch-done">Return to the water</button>
+    </dialog>
+
     <dialog id="help-dialog" class="help-dialog">
       <button class="dialog-close" id="close-help" aria-label="Close">×</button>
       <div class="dialog-flower">✿</div><div class="eyebrow">A note from the island</div>
       <h2>How to fish</h2>
-      <p>Cast your line into the cove and settle in. When a fish comes by, you'll hear a soft chime and see a little splash. Tap <b>Reel it in</b> to see what the tide brought you.</p>
-      <p>There's no timer and no wrong answer. Take your time, enjoy the breeze, and see if you can meet all six little fish.</p>
+      <p>Cast your line into the cove and settle in. Watch for ripples or gentle nibbles around your bobber. When a fish bites, the bobber dips, you'll hear a chime, and the button flashes warm gold.</p>
+      <p>Tap <b>Reel it in</b> (or press <b>SPACE</b>) to bring your new friend aboard! You can also tap the weather badge anytime to cycle between <b>Morning</b>, <b>Sunset</b>, and <b>Starlight</b>.</p>
       <button class="dialog-done" id="help-done">Sounds lovely</button>
     </dialog>
   </main>

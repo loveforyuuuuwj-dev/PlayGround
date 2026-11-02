@@ -13,7 +13,8 @@ button { font:inherit; }
 .brand-mark { display:grid; place-items:center; border-radius:50%; width:39px; height:39px; background:#fffdf3d9; color:#dd9d5a; font-family:'DM Sans',sans-serif; font-size:22px; box-shadow:0 4px 14px #36574b15; }
 .brand-sub { display:block; font-family:'DM Sans',sans-serif; font-size:9px; line-height:1.2; letter-spacing:1.55px; text-transform:uppercase; font-weight:600; color:#58776c; }
 .top-actions { display:flex; gap:10px; align-items:center; }
-.weather { display:flex; align-items:center; gap:8px; padding:10px 15px; border:1px solid #fff9; border-radius:25px; background:#fffcf0d9; color:#486258; font-size:12px; font-weight:700; box-shadow:0 4px 16px #28493c10; }
+.weather { display:flex; align-items:center; gap:8px; padding:10px 15px; border:1px solid #fff9; border-radius:25px; background:#fffcf0d9; color:#486258; font-size:12px; font-weight:700; box-shadow:0 4px 16px #28493c10; cursor:pointer; user-select:none; transition:transform .18s, background .18s; }
+.weather:hover { transform:translateY(-2px); background:#fff; }
 .weather-icon { color:#d79745; font-size:18px; }.weather small { font-size:11px; font-weight:500; color:#81938a; }
 .icon-button { border:1px solid #fff9; height:38px; width:38px; border-radius:50%; background:#fffcf0d9; color:#527267; cursor:pointer; font-size:18px; display:grid; place-items:center; transition:transform .18s,background .18s; box-shadow:0 4px 16px #28493c10; }
 .icon-button:hover { transform:translateY(-2px); background:#fff; }
@@ -44,7 +45,32 @@ h1 em { color:#739480; font-weight:600; }
 .fish-placeholder { display:flex; align-items:center; gap:7px; color:#b3beb5; font-size:10px; }.fish-placeholder span { color:#cfaa7f; font-size:14px; }
 .footer-note { margin-top:auto; padding-top:14px; color:#9cab9f; font-size:10px; text-align:center; letter-spacing:.2px; }.footer-note>span:first-child { color:#d0a570; margin-right:4px; }.footer-right { position:absolute; right:clamp(24px,7vw,105px); color:#b1bdb4; }
 .toast { position:fixed; z-index:4; left:50%; top:28%; transform:translate(-50%,-8px); opacity:0; pointer-events:none; padding:12px 19px; border-radius:99px; background:#fffdf2ed; color:#426550; box-shadow:0 8px 30px #24473d22; font-size:12px; font-weight:600; transition:opacity .3s,transform .3s; white-space:nowrap; }.toast.show { opacity:1; transform:translate(-50%,0); }
-.help-dialog { position:fixed; inset:0; margin:auto; width:min(410px,calc(100% - 34px)); border:1px solid #e5ece2; border-radius:20px; padding:34px 36px 30px; color:var(--ink); background:#fffdf6; box-shadow:0 20px 70px #173a302b; }.help-dialog::backdrop { background:#173a3055; backdrop-filter:blur(3px); }.dialog-close { position:absolute; top:13px; right:15px; border:0; background:none; color:#8a9a91; font-size:26px; cursor:pointer; }.dialog-flower { color:#d4a266; font-size:27px; margin-bottom:13px; }.help-dialog h2 { margin:8px 0 12px; font-family:Fraunces,serif; font-size:32px; color:#31554a; }.help-dialog p { color:#71867c; font-size:13px; line-height:1.7; }.dialog-done { width:100%; border:0; border-radius:9px; padding:13px; margin-top:9px; background:#396b56; color:#fff; cursor:pointer; font-weight:700; }
+.help-dialog { position:fixed; inset:0; margin:auto; width:min(440px,calc(100% - 34px)); border:1px solid #e5ece2; border-radius:20px; padding:32px 32px 28px; color:var(--ink); background:#fffdf6; box-shadow:0 20px 70px #173a302b; }
+.help-dialog::backdrop { background:#173a3055; backdrop-filter:blur(3px); }
+.dialog-close { position:absolute; top:13px; right:15px; border:0; background:none; color:#8a9a91; font-size:26px; cursor:pointer; }
+.dialog-flower { color:#d4a266; font-size:27px; margin-bottom:13px; }
+.help-dialog h2 { margin:8px 0 12px; font-family:Fraunces,serif; font-size:30px; color:#31554a; }
+.help-dialog p { color:#71867c; font-size:13px; line-height:1.7; }
+.dialog-done { width:100%; border:0; border-radius:9px; padding:13px; margin-top:14px; background:#396b56; color:#fff; cursor:pointer; font-weight:700; transition:background .18s; }
+.dialog-done:hover { background:#2d5746; }
+
+.journal-dialog { width:min(520px,calc(100% - 34px)); max-height:85vh; overflow-y:auto; }
+.journal-sub { font-size:12px; color:#788f83; margin-bottom:16px; }
+.journal-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(210px, 1fr)); gap:10px; margin-top:10px; }
+.journal-card { border:1px solid #e7efe5; border-radius:12px; padding:12px 14px; background:#fafcf7; display:flex; gap:12px; align-items:flex-start; }
+.journal-card.locked { opacity:0.55; filter:grayscale(0.85); background:#f4f7f2; }
+.journal-icon { font-size:28px; line-height:1; }
+.journal-info { flex:1; }
+.journal-name { font-weight:700; font-size:13px; color:#31554a; margin-bottom:2px; display:flex; justify-content:space-between; align-items:center; }
+.journal-rarity { font-size:9px; text-transform:uppercase; letter-spacing:0.8px; color:#d28b49; }
+.journal-desc { font-size:11px; color:#758b81; line-height:1.4; margin-top:3px; }
+.journal-count { font-size:10px; color:#95a89e; margin-top:4px; font-weight:600; }
+
+.catch-dialog { text-align:center; width:min(380px,calc(100% - 34px)); }
+.catch-avatar { font-size:64px; margin:4px 0 10px; filter:drop-shadow(0 6px 16px rgba(0,0,0,0.12)); animation:catch-bounce 1s ease-in-out infinite alternate; }
+.catch-meta { display:flex; justify-content:center; gap:16px; font-size:11px; color:#738a7f; margin:6px 0 12px; }
+.catch-meta b { color:#31554a; }
+@keyframes catch-bounce { from { transform:translateY(0) scale(1); } to { transform:translateY(-8px) scale(1.05); } }
 @keyframes button-pulse { 50% { box-shadow:0 5px 22px #c78d5066; } }@keyframes appear { from { opacity:0; transform:translateY(5px); } to {opacity:1;transform:translateY(0);} }
 @media (min-height:950px) { .island-scene { height:65vh; max-height:730px; }.play-area { padding-top:38px; }.collection-strip { margin-top:26px; } }
 @media (max-width:700px) { .game-shell { min-height:100svh; }.island-scene { height:42svh; min-height:325px; max-height:430px; }.topbar { top:17px; }.brand { font-size:19px; }.brand-mark { width:34px; height:34px; }.weather { padding:8px 10px; gap:5px; }.weather small { display:none; }.top-actions { gap:7px; }.icon-button { width:34px; height:34px; }.scene-caption { bottom:20px; font-size:9px; }.scene-note { right:22px; bottom:17px; max-width:160px; font-size:12px; }.play-area { padding:22px 23px 13px; }.island-card { align-items:flex-start; flex-direction:column; gap:16px; }h1 { font-size:34px; }.card-stats { min-width:0; padding:11px 17px; width:100%; justify-content:center; }.card-stats .stat { flex:1; justify-content:center; }.action-row { margin-top:16px; padding-top:14px; }.hint { font-size:10px; max-width:135px; }.cast-button { min-width:178px; height:46px; padding:0 11px; font-size:12px; gap:7px; }.collection-strip { margin-top:15px; padding-top:11px; }.collection-heading { font-size:8px; }.fish-list { gap:5px; flex-wrap:wrap; }.fish-chip { padding:5px 7px; gap:5px; font-size:9px; }.footer-note { padding-top:10px; font-size:9px; }.footer-right { display:none; } }
