@@ -1,0 +1,46 @@
+/* Small interaction details that keep the field kit feeling tactile. */
+button {
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #a7ebc2;
+  outline-offset: 3px;
+}
+
+.build-option,
+.icon-btn,
+.zoom-controls button,
+.mobile-action,
+.text-btn {
+  transition: transform 140ms ease, border-color 140ms ease, background-color 140ms ease, filter 140ms ease;
+}
+
+.build-option:hover,
+.icon-btn:hover,
+.zoom-controls button:hover,
+.mobile-action:hover {
+  filter: brightness(1.18);
+}
+
+.build-option:active,
+.icon-btn:active,
+.zoom-controls button:active,
+.mobile-action:active {
+  transform: translateY(1px) scale(0.97);
+}
+
+.build-option.selected {
+  box-shadow: inset 0 0 0 1px rgba(157, 234, 187, 0.18), 0 0 18px rgba(115, 224, 159, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
