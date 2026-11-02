@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+  <meta name="theme-color" content="#071b26" />
+  <title>Alien Island — A New Beginning</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="game-shell">
+    <canvas id="game" aria-label="Alien Island game world"></canvas>
+    <div class="vignette"></div>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Alien Island home"><span class="brand-mark">✦</span><span>ALIEN <b>ISLAND</b><small>FIELD EXPEDITION 01</small></span></a>
+      <div class="world-status"><span class="live-dot"></span><span id="weather">CLEAR SKIES</span><i></i><span id="clock">DAY 01 · 08:00</span></div>
+      <button class="icon-btn map-btn" id="map-toggle" aria-label="Toggle map">⌗</button>
+    </header>
+    <section class="left-stack">
+      <div class="panel vitals">
+        <div class="panel-heading"><span>SUIT STATUS</span><span class="signal">◉ ONLINE</span></div>
+        <div class="vital-row"><span class="vital-icon oxygen">◉</span><div class="vital-content"><div class="vital-label"><span>OXYGEN</span><b id="oxygen-value">92%</b></div><div class="meter"><i id="oxygen-meter" class="oxygen-fill"></i></div></div></div>
+        <div class="vital-row"><span class="vital-icon energy">ϟ</span><div class="vital-content"><div class="vital-label"><span>ENERGY</span><b id="energy-value">86%</b></div><div class="meter"><i id="energy-meter" class="energy-fill"></i></div></div></div>
+        <div class="vital-row"><span class="vital-icon health">✚</span><div class="vital-content"><div class="vital-label"><span>VITALS</span><b>STABLE</b></div><div class="meter"><i class="health-fill"></i></div></div></div>
+      </div>
+      <div class="panel mission-card"><div class="mission-kicker"><span>✧</span> PRIMARY DIRECTIVE</div><h2 id="mission-title">A world waiting<br>to wake up.</h2><p id="mission-copy">Gather living matter and plant your first glowfern.</p><div class="mission-progress"><div class="progress-track"><i id="mission-progress"></i></div><span id="mission-count">0 / 1</span></div><div class="mission-foot"><span class="tiny-star">✦</span><span id="mission-reward">Restore the island</span></div></div>
+    </section>
+    <div class="island-label"><span class="label-line"></span><span>VERDANT REACH</span><small>SECTOR 03 · UNKNOWN</small></div>
+    <section class="right-stack">
+      <div class="panel ecosystem"><div class="eco-top"><div><div class="panel-heading">ECOSYSTEM</div><div class="eco-name">Terraform index</div></div><div class="eco-score" id="eco-score">08<span>%</span></div></div><div class="eco-track"><i id="eco-meter"></i></div><div class="eco-foot"><span><i class="eco-dot"></i><span id="eco-caption">DORMANT</span></span><span id="eco-change">+0.0 / HR</span></div></div>
+      <div class="panel inventory"><div class="inventory-heading"><span>FIELD KIT</span><button id="inventory-toggle" class="text-btn">INVENTORY <span>↗</span></button></div><div class="resource-grid" id="resources"></div></div>
+      <div class="panel build-panel"><div class="build-title"><span>QUICK BUILD</span><span class="build-sub">SELECT A BLUEPRINT</span></div><div class="build-options"><button class="build-option selected" data-build="seed"><span class="build-icon seed-icon">✿</span><span>Glowfern</span><small>1 SEED</small></button><button class="build-option" data-build="purifier"><span class="build-icon purifier-icon">⌬</span><span>Purifier</span><small>3 MATTER · 2 CRYSTAL</small></button><button class="build-option" data-build="habitat"><span class="build-icon habitat-icon">⌂</span><span>Habitat</span><small>5 MATTER · 3 STONE</small></button></div></div>
+    </section>
+    <div class="bottom-hud"><div class="control-hint"><span class="keycap">W</span><span class="keycap">A</span><span class="keycap">S</span><span class="keycap">D</span><span>MOVE</span><span class="hint-divider">·</span><span class="keycap wide">E</span><span>INTERACT</span></div><div class="action-readout" id="action-readout"><span class="action-orb">✦</span><span>Find a glowfern seedling nearby</span></div><div class="zoom-controls"><button id="zoom-out" aria-label="Zoom out">−</button><span>ZOOM</span><button id="zoom-in" aria-label="Zoom in">+</button></div></div>
+    <div id="toast" class="toast" aria-live="polite"></div>
+    <div id="inventory-modal" class="modal hidden"><div class="modal-card"><button class="modal-close" aria-label="Close">×</button><div class="modal-eyebrow">EXPEDITION LOG · 01</div><h2>Field inventory</h2><p class="modal-sub">Everything you need to bring this little world back to life.</p><div id="modal-resources" class="modal-resources"></div><div class="craft-row"><div><b>Glowfern seed</b><small>Living matter ×1</small></div><button id="craft-seed">CRAFT <span>✦</span></button></div><div class="craft-row"><div><b>Solar cell</b><small>Crystal ×2 · Living matter ×1</small></div><button id="craft-cell">CRAFT <span>ϟ</span></button></div></div></div>
+    <div class="mobile-controls"><div class="joystick" id="joystick"><div class="joy-ring"></div><div class="joy-knob" id="joy-knob"></div></div><div class="mobile-actions"><button id="mobile-action" class="mobile-action"><span>✦</span><small>ACT</small></button><button id="mobile-build" class="mobile-action"><span>⌬</span><small>BUILD</small></button></div></div>
+    <div id="map-overlay" class="map-overlay hidden"><div class="map-heading">VERDANT REACH <span>SECTOR 03</span></div><canvas id="mini-map" width="220" height="160"></canvas><div class="map-legend"><span><i class="legend-player"></i> YOU</span><span><i class="legend-life"></i> LIFE</span><span><i class="legend-structure"></i> STRUCTURE</span></div></div>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
