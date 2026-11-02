@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moonlit Drift</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="game-shell">
+      <canvas id="game" width="960" height="600" aria-label="Fishing roguelike game"></canvas>
+      <div class="touch-controls" aria-label="Touch controls">
+        <div class="dpad" aria-label="Move the boat">
+          <button type="button" data-key="ArrowUp" aria-label="Move up">▲</button>
+          <button type="button" data-key="ArrowLeft" aria-label="Move left">◀</button>
+          <button type="button" data-key="ArrowDown" aria-label="Move down">▼</button>
+          <button type="button" data-key="ArrowRight" aria-label="Move right">▶</button>
+        </div>
+        <button type="button" id="touchCast" class="touch-cast">Cast<br />/ Reel</button>
+      </div>
+
+      <div id="overlay" class="overlay visible">
+        <div class="panel">
+          <p class="eyebrow">Relaxing fishing roguelike</p>
+          <h1>Moonlit Drift</h1>
+          <p>
+            Cast into the shallows, reel in rare fish, and turn a tiny dockside hut into a legendary
+            fishing lodge.
+          </p>
+          <ul>
+            <li>Move with WASD or arrow keys</li>
+            <li>Click or press Space to cast</li>
+            <li>Hold Space while the meter sits in the glowing zone</li>
+            <li>Spend your haul on better gear</li>
+          </ul>
+          <button id="startBtn">Start the run</button>
+        </div>
+      </div>
+
+      <div id="shopPanel" class="overlay hidden" aria-live="polite">
+        <div class="panel shop-panel">
+          <p class="eyebrow">Harbor market</p>
+          <h2>Night's end haul</h2>
+          <div class="shop-grid">
+            <button class="upgrade-btn" data-upgrade="line">Reinforced line<br /><span>+12% reeling speed · 18 coins</span></button>
+            <button class="upgrade-btn" data-upgrade="bait">Lure kit<br /><span>+9 percentage points bite chance · 20 coins</span></button>
+            <button class="upgrade-btn" data-upgrade="boat">Faster skiff<br /><span>+12% boat speed · 24 coins</span></button>
+            <button class="upgrade-btn" data-upgrade="luck">Lucky charm<br /><span>Better rare-fish odds and payouts · 26 coins</span></button>
+          </div>
+          <div class="shop-actions">
+            <button id="nextDayBtn" class="primary">Set sail again</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./game.js"></script>
+  </body>
+</html>
