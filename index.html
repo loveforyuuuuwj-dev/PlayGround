@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#101c28" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2218%22 fill=%22%23dff3e9%22/><text x=%2232%22 y=%2246%22 text-anchor=%22middle%22 font-size=%2244%22 fill=%22%23379f7c%22>✳</text></svg>" />
+  <title>Alien Island — Field Log 01</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="game-shell">
+    <header class="topbar">
+      <div class="brand"><div class="brand-mark">✳</div><div><div class="eyebrow">FIELD LOG <span>·</span> 01</div><h1>Alien Island</h1></div></div>
+      <div class="top-right"><div class="day-chip"><span class="sun-icon">☼</span><span id="clock">DAY 01 <b>08:20</b></span></div><button class="icon-button" id="help-button" aria-label="How to play">?</button></div>
+    </header>
+    <section class="game-area">
+      <div class="canvas-wrap">
+        <canvas id="game" width="480" height="270" aria-label="Alien island game"></canvas>
+        <div class="location-tag"><span class="location-dot"></span><span id="location">THE SHALLOWS</span><span class="coordinates">34° 08′ S</span></div>
+        <div class="toast" id="toast"></div>
+        <div class="mission-card"><div class="mission-kicker"><span>▰</span> FIRST LIGHT</div><div class="mission-title" id="mission-title">Wake the island</div><div class="mission-description" id="mission-description">Gather 3 crystal shards to power your seed beacon.</div><div class="mission-progress"><div class="progress-track"><i id="mission-progress"></i></div><span id="mission-count">0 / 3</span></div></div>
+        <button class="zoom-button" id="zoom-button" title="Adjust zoom">⌕ <span>ZOOM</span></button>
+      </div>
+      <div class="status-row">
+        <div class="vitals">
+          <div class="vital"><span class="vital-icon heart">♥</span><div class="vital-copy"><div class="vital-label">HEALTH</div><div class="meter"><i class="health-fill"></i></div></div></div>
+          <div class="vital"><span class="vital-icon">◉</span><div class="vital-copy"><div class="vital-label">OXYGEN</div><div class="meter"><i class="oxygen-fill" id="oxygen-fill"></i></div></div><span class="vital-value" id="oxygen-value">92%</span></div>
+          <div class="vital energy-vital"><span class="vital-icon energy">ϟ</span><div class="vital-copy"><div class="vital-label">SUIT ENERGY</div><div class="meter"><i class="energy-fill" id="energy-fill"></i></div></div><span class="vital-value">74%</span></div>
+        </div>
+        <div class="world-health"><div class="world-heading"><span>ISLAND VITALITY</span><span id="vitality-number">08%</span></div><div class="world-track"><i id="vitality-fill"></i><span></span></div><div class="world-caption" id="world-caption">A quiet world, waiting to breathe</div></div>
+      </div>
+      <div class="bottom-row">
+        <div class="inventory-bar"><div class="inventory-label">PACK <span id="item-total">04</span></div><div class="resource-slots">
+          <button class="resource-slot active" data-item="crystal" title="Crystal shards"><span class="resource-icon crystal-icon">◆</span><span class="resource-count" id="count-crystal">0</span><span class="resource-name">SHARD</span></button>
+          <button class="resource-slot" data-item="seed" title="Alien seeds"><span class="resource-icon seed-icon">✦</span><span class="resource-count" id="count-seed">2</span><span class="resource-name">SEED</span></button>
+          <button class="resource-slot" data-item="fiber" title="Vine fiber"><span class="resource-icon fiber-icon">〰</span><span class="resource-count" id="count-fiber">0</span><span class="resource-name">FIBER</span></button>
+          <button class="resource-slot" data-item="ore" title="Lunar ore"><span class="resource-icon ore-icon">⬡</span><span class="resource-count" id="count-ore">0</span><span class="resource-name">ORE</span></button>
+        </div></div>
+        <div class="controls-hint"><span class="keycap">WASD</span> MOVE <span class="hint-dot">·</span> <span class="keycap">E</span> INTERACT</div>
+        <div class="action-buttons"><button class="action-button secondary" id="craft-button"><span>⌘</span> <label>CRAFT</label></button><button class="action-button primary" id="interact-button"><span>✧</span> <label>INTERACT</label><small>E</small></button></div>
+      </div>
+      <div class="mobile-controls"><div class="joystick" id="joystick"><div class="joystick-knob" id="joystick-knob"></div></div><button class="mobile-action" id="mobile-craft">⌘<small>CRAFT</small></button><button class="mobile-action interact-mobile" id="mobile-interact">✧<small>USE</small></button></div>
+    </section>
+    <footer><span><i class="live-dot"></i> AUTOSAVED TO FIELD LOG</span><span class="footer-center">A LITTLE WORLD, ONE SEED AT A TIME</span><button id="inventory-button">◫ &nbsp; INVENTORY</button></footer>
+  </main>
+  <div class="modal-backdrop" id="modal-backdrop"><section class="modal" role="dialog" aria-modal="true"><button class="modal-close" id="modal-close">×</button><div class="modal-eyebrow">FIELD KIT</div><h2 id="modal-title">Craft & build</h2><p class="modal-intro" id="modal-intro">Make something good for this little world.</p><div class="recipe-list" id="recipe-list"></div><div class="modal-foot">TIP · Stand close to a resource and press <b>E</b> to gather.</div></section></div>
+  <div class="help-pop" id="help-pop"><b>How to play</b><p>WASD or arrow keys to wander. Move near a glowing crystal, softwood shrub, or ironstone and press <b>E</b> to gather. Plant seeds to restore the island. Craft a seed beacon to speed things up.</p><button id="help-ok">GOT IT</button></div>
+  <script src="game.js"></script>
+</body>
+</html>
