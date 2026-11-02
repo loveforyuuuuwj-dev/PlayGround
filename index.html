@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#c9e8e4" />
+  <link rel="icon" href="data:," />
+  <title>Little Isle — a quiet fishing game</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="game-shell">
+    <section class="island-scene" aria-label="A peaceful island on a sunny day">
+      <canvas id="scene" aria-hidden="true"></canvas>
+      <div class="scene-shade"></div>
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Little Isle home"><span class="brand-mark">✳</span><span>little isle<span class="brand-sub">a quiet fishing game</span></span></a>
+        <div class="top-actions">
+          <div class="weather"><span class="weather-icon">☀</span><span>24°<small> · gentle breeze</small></span></div>
+          <button class="icon-button" id="sound-toggle" type="button" aria-label="Turn ambient sounds on" title="Ambient sounds"><span id="sound-icon">♪</span></button>
+          <button class="icon-button" id="help-button" type="button" aria-label="How to play" title="How to play">?</button>
+        </div>
+      </header>
+      <div class="scene-caption"><span class="caption-dot"></span> PEBBLE COVE <span class="caption-line"></span> DAY 01</div>
+      <div class="scene-note" id="scene-note" aria-live="polite">The tide is in no hurry. Neither are you.</div>
+      <div class="sun-glow" aria-hidden="true"></div>
+    </section>
+
+    <section class="play-area" aria-label="Fishing controls">
+      <div class="island-card">
+        <div class="card-copy">
+          <div class="eyebrow">A little time for yourself</div>
+          <h1>Cast a line.<br><em>Let the day drift.</em></h1>
+          <p id="status-copy" aria-live="polite">The water looks lovely. Cast whenever you're ready.</p>
+        </div>
+        <div class="card-stats">
+          <div class="stat"><span class="stat-icon">♧</span><span><b id="fish-count">0</b><small>fish caught</small></span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><span class="stat-icon shell-icon">◉</span><span><b id="species-count">0</b><small>of 6 found</small></span></div>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <div class="hint" id="hint"><span class="hint-icon">✦</span><span>Listen for a little splash.</span></div>
+        <button class="cast-button" id="action-button" type="button">
+          <span class="button-icon" id="button-icon">↗</span>
+          <span id="button-label">Cast your line</span>
+          <span class="button-key" aria-hidden="true">SPACE</span>
+        </button>
+      </div>
+
+      <div class="collection-strip" aria-label="Your fish collection">
+        <div class="collection-heading"><span>YOUR LITTLE CATCH</span><span id="collection-progress">A collection in the making</span></div>
+        <div class="fish-list" id="fish-list"></div>
+      </div>
+      <footer class="footer-note"><span>✿</span> No rush, no wrong way to play <span class="footer-right">A small island, all yours</span></footer>
+    </section>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <dialog id="help-dialog" class="help-dialog">
+      <button class="dialog-close" id="close-help" aria-label="Close">×</button>
+      <div class="dialog-flower">✿</div><div class="eyebrow">A note from the island</div>
+      <h2>How to fish</h2>
+      <p>Cast your line into the cove and settle in. When a fish comes by, you'll hear a soft chime and see a little splash. Tap <b>Reel it in</b> to see what the tide brought you.</p>
+      <p>There's no timer and no wrong answer. Take your time, enjoy the breeze, and see if you can meet all six little fish.</p>
+      <button class="dialog-done" id="help-done">Sounds lovely</button>
+    </dialog>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
