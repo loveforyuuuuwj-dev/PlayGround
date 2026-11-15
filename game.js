@@ -81,10 +81,37 @@ const fishes = [
   }
 ];
 
+const SAVE_KEY = 'little-isle-save-v1';
 const counts = Array(fishes.length).fill(0);
 const bestSizes = Array(fishes.length).fill(0);
 let caught = 0;
 let phase = 'idle'; // 'idle' | 'casting' | 'waiting' | 'bite' | 'reeling'
+
+function loadProgress() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(SAVE_KEY) || 'null');
+    if (!saved || saved.version !== 1 || !Array.isArray(saved.counts) || !Array.isArray(saved.bestSizes)) return;
+    for (let i = 0; i < fishes.length; i++) {
+      counts[i] = Number.isSafeInteger(saved.counts[i]) && saved.counts[i] >= 0 ? saved.counts[i] : 0;
+      bestSizes[i] = Number.isFinite(saved.bestSizes[i]) && saved.bestSizes[i] >= 0 ? saved.bestSizes[i] : 0;
+    }
+    caught = counts.reduce((total, count) => total + count, 0);
+  } catch (error) {
+    // Storage can be unavailable in private browsing; the game still works for this visit.
+    console.info('Little Isle progress could not be loaded.', error);
+  }
+}
+
+function saveProgress() {
+  try {
+    localStorage.setItem(SAVE_KEY, JSON.stringify({ version: 1, counts, bestSizes }));
+  } catch (error) {
+    showToast('Your catch is safe for this visit, but could not be saved.');
+    console.info('Little Isle progress could not be saved.', error);
+  }
+}
+
+loadProgress();
 let biteAt = 0;
 let castStart = 0;
 let bobber = { x: 690, y: 430, targetX: 690, targetY: 430, startX: 413, startY: 449 };
@@ -763,6 +790,7 @@ function castLine() {
     const size = +(fish.sizeRange[0] + Math.random() * (fish.sizeRange[1] - fish.sizeRange[0])).toFixed(1);
     if (size > bestSizes[fishIndex]) bestSizes[fishIndex] = size;
 
+    saveProgress();
     addSparkle(bobber.x, bobber.y, fish.color);
     updateCollection();
     setPhase('idle');
@@ -810,9 +838,11 @@ function updateCollection() {
   fishList.innerHTML = '';
   fishes.forEach((fish, i) => {
     if (counts[i]) {
-      const chip = document.createElement('div');
+      const chip = document.createElement('button');
+      chip.type = 'button';
       chip.className = 'fish-chip';
       chip.title = `${fish.name}: caught ${counts[i]} ${counts[i] === 1 ? 'time' : 'times'} (best: ${bestSizes[i]} cm)`;
+      chip.setAttribute('aria-label', `${fish.name}, caught ${counts[i]} ${counts[i] === 1 ? 'time' : 'times'}. Open the field journal.`);
       chip.innerHTML = `<span class="fish-emoji">${fish.emoji}</span><span>${fish.name}</span><span class="fish-total">×${counts[i]}</span>`;
       chip.addEventListener('click', () => openJournal());
       fishList.appendChild(chip);
