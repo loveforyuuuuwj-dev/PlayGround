@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#e8f0e9">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%23dce9de'/%3E%3Ctext x='20' y='28' text-anchor='middle' font-size='27' fill='%234e8270'%3E%E2%9C%B3%3C/text%3E%3C/svg%3E">
+  <title>Stillwater — A little fishing RPG</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Stillwater home"><span class="brand-mark">✳</span><span>stillwater<small>A little fishing RPG</small></span></a>
+      <div class="day-note"><span class="sun-icon">☀</span><span><b id="timeLabel">Morning</b><small>Day <span id="dayNum">1</span> · <span id="weatherLabel">Clear skies</span></small></span></div>
+      <div class="player-chip"><span class="avatar">🧢</span><span><b>River</b><small>Level <span id="level">1</span> angler</small></span><div class="xp-mini"><i id="xpFill"></i></div></div>
+      <button class="icon-btn sound-btn" id="soundBtn" aria-label="Toggle ambient sound" title="Ambient sound">♫</button>
+    </header>
+
+    <main>
+      <section class="greeting-row">
+        <div><p class="eyebrow">YOUR QUIET CORNER OF THE WORLD</p><h1>A slower kind of adventure<span>.</span></h1><p class="subtitle">The lake is calm, the kettle is warm. What will you find today?</p></div>
+        <button class="text-btn" id="journalOpen">📖 <span>Field journal</span><span class="count-pill" id="journalCount">0</span></button>
+      </section>
+
+      <section class="lake-card" aria-label="Fishing spot">
+        <div class="scene-sky"></div><div class="scene-sun"></div><div class="scene-cloud cloud-one"></div><div class="scene-cloud cloud-two"></div>
+        <div class="mountain mountain-back"></div><div class="mountain mountain-front"></div><div class="pine pine-a">♠</div><div class="pine pine-b">♠</div><div class="pine pine-c">♠</div>
+        <div class="water-glow"></div><div class="scene-water"><span class="water-line line-one"></span><span class="water-line line-two"></span><span class="water-line line-three"></span><span class="water-line line-four"></span><span class="water-line line-five"></span></div>
+        <div class="far-shore"></div><div class="dock"><div class="dock-post post-one"></div><div class="dock-post post-two"></div></div>
+        <div class="fisher"><span class="fisher-hat"></span><span class="fisher-head"></span><span class="fisher-body"></span><span class="fisher-leg leg-a"></span><span class="fisher-leg leg-b"></span></div>
+        <div class="rod"></div><div class="fishing-line"></div><div class="bobber" id="bobber"><span></span></div>
+        <div class="reeds reed-left">♨ ♨ ♨</div><div class="reeds reed-right">♨ ♨ ♨</div>
+        <div class="scene-badge"><span class="live-dot"></span><span id="spotName">Willowmere Lake</span><span class="badge-divider">·</span><span id="spotMood">A gentle breeze</span></div>
+        <div class="scene-caption" id="sceneCaption">A pair of ducks drift past the reeds.</div>
+        <button class="spot-switch" id="spotSwitch" aria-label="Change fishing spot">⌄ <span>Change spot</span></button>
+        <div class="spot-menu" id="spotMenu" hidden></div>
+      </section>
+
+      <section class="play-row">
+        <div class="fishing-panel">
+          <div class="fishing-copy"><div class="status-line"><span class="status-dot" id="statusDot"></span><span id="statusText">Your line is ready</span></div><h2 id="promptTitle">Cast a line, stay awhile.</h2><p id="promptText">There’s no rush. The fish will come when they’re ready.</p></div>
+          <div class="action-area"><button class="primary-btn" id="castBtn"><span>⌁</span> Cast a line</button><button class="secondary-btn" id="reelBtn" hidden>🎣 Reel it in</button><span class="cast-hint" id="castHint">Take a deep breath · enjoy the view</span></div>
+          <div class="bite-meter" id="biteMeter" hidden><span>FISH ON THE LINE</span><div class="meter-track"><i id="biteFill"></i></div><small>Tap reel before it gets away</small></div>
+        </div>
+        <aside class="weather-card"><div class="weather-top"><span class="weather-symbol" id="weatherIcon">☀️</span><span class="weather-temp">18<small>°C</small></span></div><b id="weatherTitle">Soft morning light</b><p id="weatherDesc">Perfect weather for a quiet day by the water.</p><div class="weather-divider"></div><div class="mini-stat"><span>Today’s catch</span><b id="todayCatch">0 fish</b></div></aside>
+      </section>
+
+      <section class="bottom-grid">
+        <article class="card collection-card"><div class="card-heading"><div><p class="eyebrow">THE LITTLE THINGS</p><h3>Today's collection</h3></div><button class="quiet-link" id="viewAll">View journal <span>→</span></button></div><div class="collection-list" id="collectionList"><div class="empty-state"><span>🐟</span><p>Your first catch is waiting<br>to become a story.</p></div></div></article>
+        <article class="card quest-card"><div class="card-heading"><div><p class="eyebrow">A FRIENDLY REMINDER</p><h3>Lake request</h3></div><span class="quest-icon">✦</span></div><div class="quest-detail"><div class="quest-emoji">🪶</div><div><b id="questTitle">A gift for Marnie</b><p id="questDesc">Catch any 3 fish for the lakeside café.</p></div></div><div class="quest-progress"><div class="quest-track"><i id="questFill"></i></div><span id="questProgress">0 / 3</span></div><div class="quest-reward">Reward <b>+35 coins</b><span> · </span><b>+20 XP</b></div></article>
+        <article class="card satchel-card"><div class="card-heading"><div><p class="eyebrow">POCKET CHANGE</p><h3>Your satchel</h3></div><span class="coin-mark">◉</span></div><div class="coin-total"><span id="coinTotal">24</span><small>coins</small></div><div class="satchel-bottom"><span>🎣 Bamboo rod <small id="rodLevel">Level 1</small></span><button class="upgrade-btn" id="upgradeBtn">Improve rod <b>40 ◉</b></button></div></article>
+      </section>
+      <footer><span>Made for unhurried afternoons</span><span>✦ &nbsp;Save your progress automatically</span></footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="journalModal" hidden><section class="journal-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="modal-close" id="modalClose" aria-label="Close journal">×</button><p class="eyebrow">YOUR ADVENTURES SO FAR</p><h2 id="modalTitle">Field journal</h2><p class="modal-sub">Every little catch has a story.</p><div class="journal-stats"><div><b id="journalTotal">0</b><span>fish caught</span></div><div><b id="journalKinds">0</b><span>species found</span></div><div><b id="journalCoins">24</b><span>coins saved</span></div></div><div class="journal-entries" id="journalEntries"></div><button class="secondary-btn sell-btn" id="sellBtn" disabled>Sell today's catch · 0 ◉</button></section></div>
+  <div class="toast" id="toast" aria-live="polite"></div>
+  <script src="game.js"></script>
+</body>
+</html>
